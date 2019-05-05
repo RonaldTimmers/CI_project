@@ -1,0 +1,20 @@
+{# empty Twig template #}
+
+{% if secondQuery == 'less-strict' %}
+    <div id="search-less-strict" class="alert alert-warning search-warning" role="alert">
+        <b>Notice:</b> Because we could not find enough results, the search engine give less strict results
+    </div>
+{% endif %}
+
+{% if secondQuery == 'multiple-words' %}
+    <div id="search-no-result" class="alert alert-warning search-warning text-center" role="alert">
+        <strong>Sorry, despite we are working hard on the total amount of products we did not found anything.</strong><br />
+        <br />
+
+
+        Some Tips:<br />
+        - Try your search with fewer keywords. <br />
+        - Put the most important keywords first. <br />
+        - Keep in mind that the engine works only with the English language. 
+    </div>
+{% endif %}

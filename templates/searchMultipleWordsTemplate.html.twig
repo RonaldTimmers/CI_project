@@ -1,0 +1,42 @@
+
+{% for searchResult in searchResults %}    
+  
+    <hr />
+    
+    <div class="row keyword-suggestion-box" style="margin-bottom: 20px;">
+    <span class="keyword-suggestions pull-left" style="font-size: 1.2em;">Results for: 
+    
+    {% for initialKeyword in initialKeywords %}
+            {% if initialKeywords[loop.index0] == searchResult.searchKeywords %}
+                <a href="{{ BASE_URL }}search/{{ initialKeywords[loop.index0] }}/" title="Search for {{ initialKeywords[loop.index0] }}"><strong>{{ initialKeywords[loop.index0] }}</strong></a>
+            {% else %}
+                <del>{{ initialKeyword }}</del>
+            {% endif %} 
+        
+    {% endfor %}
+    </span>
+
+    
+    {% if searchResult.searchQL.totalFound > 0 %}
+        <span class="keyword-suggestions pull-right" style="font-size: 1.2em;">Total Results - <strong> {{ searchResult.searchQL.totalFound }} </strong></span>
+    {% endif %}
+    </div>
+    
+    
+    {% if searchResult.thumbs %}
+         
+        {{ include('thumbsBasic_4_Template.html.twig', {   'thumbs': searchResult.thumbs } ) }}
+
+    {% else %}
+        
+        <div class="alert alert-danger" role="alert">
+            <span>We did not found any results for this keyword...</span>
+        </div>
+        
+    {% endif %}
+    
+     
+
+    <div class="clearfix"></div>
+
+{% endfor %}

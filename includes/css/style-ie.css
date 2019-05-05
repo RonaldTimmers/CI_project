@@ -1,0 +1,69 @@
+
+.shops-header {
+	background-image: url("../../img/icons/webshop_icon.png");
+}
+
+.navBarTop-columnarOther{
+	display:none;
+}
+
+.navBarTop-columnarGeneral {
+	display:none;
+}
+
+.navBarTop-MainLi:hover > ul, .navBarTop-OtherLi:hover > ul  {
+	display: none;
+}
+
+.fl{
+	width:19%;
+}
+
+#search-box > input[type=submit] {
+	background-image: url("../../img/icons/search.png");
+}
+
+.blog{
+	height: 72px;
+	width: 72px;
+}
+.facebook{
+	height:72px;
+	width: 72px;
+}
+.twitter{
+	height: 72px;
+	width: 72px;
+}
+.gplus{
+	height: 72px;
+	width: 72px;
+}
+
+.thumbtitle{
+	height:47px;
+}
+
+.daily-title{
+	height:47px;
+}
+
+.product-title{
+	height:30px;
+}
+
+.couponsource{
+	width:300px;
+}
+
+.thumbtitle{
+	height:47px;
+}
+
+.daily-title{
+	height:47px;
+}
+
+#category-box .product-title{
+	max-height: 30px;
+}

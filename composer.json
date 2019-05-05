@@ -1,0 +1,15 @@
+{  
+    "config": {
+         "optimize-autoloader": true
+    },
+    "autoload": {
+        "psr-4": {
+            "CI\\":"classes/"
+        }
+    },
+    "require": {
+        "foolz/sphinxql-query-builder": "1.1.1",
+        "rollbar/rollbar": "~1.1",
+        "twig/twig": "~1.0"
+    }
+}

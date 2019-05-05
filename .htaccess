@@ -1,0 +1,153 @@
+# AuthType Basic
+# AuthName "Password Protected Area"
+# AuthUserFile /home/CI/public_html/.htpasswd
+# Require valid-user
+
+# ErrorDocument 404 http://test.bimmith.com/error-404/
+# ErrorDocument 403 http://test.bimmith.com/error-403/
+
+RewriteEngine on
+RewriteCond %{HTTP_HOST} ^192\.168\.2\.100 [NC]
+RewriteCond %{HTTP_HOST} ^87\.213\.252\.132 [NC]
+RewriteCond %{HTTP_HOST} ^bimmith.com [NC]
+RewriteRule ^(.*)$ http://test.bimmith.com/$1 [L,R=302]
+
+
+# RewriteRule ^china-brands/$ /china-brands/ [L,R=302]
+# RewriteRule ^china-brands/([^\.]+)/$ /china-brands/$1/ [L,R=302]    
+
+# DELETED BEFORE
+# RewriteRule ^2/([0-9]+)/([^\.]+)/$ /p/$1/$2/1/ [L,R=301]
+# RewriteRule ^3/([0-9]+)/([^\.]+)/$ /ps/$1/$2/1/ [L,R=301]
+
+# DELETED 26-10-2016 FOR NEW LINKS
+# RewriteRule ^p/95/tablets/$ /p/282/tablets/1/ [L,R=301]
+# RewriteRule ^p/95/tablets/([0-9]+)/$ /p/282/tablets/$1/ [L,R=301]
+# RewriteRule ^p/63/ipad/$ /p/278/ipad-accessories/1/ [L,R=301]
+# RewriteRule ^p/63/ipad/([0-9]+)/$ /p/278/ipad-accessories/$1/ [L,R=301]
+# RewriteRule ^p/67/ipod/$ /p/279/ipod-accessories/1/ [L,R=301]
+# RewriteRule ^p/67/ipod/([0-9]+)/$ /p/279/ipod-accessories/$1/ [L,R=301]
+# RewriteRule ^p/227/iphone-misc/$ /ps/907/iphone-other/1/ [L,R=301]
+# RewriteRule ^p/227/iphone-misc/([0-9]+)/$ /ps/907/iphone-other/$1/ [L,R=301]
+# RewriteRule ^p/228/ipad-misc/$ /ps/921/ipad-other/1/ [L,R=301]
+# RewriteRule ^p/228/ipad-misc/([0-9]+)/$ /ps/921/ipad-other/$1/ [L,R=301]
+# RewriteRule ^ps/193/tablet-cases/$ /ps/948/tablet-cases/1/ [L,R=301]
+# RewriteRule ^ps/193/tablet-cases/([0-9]+)/$ /ps/948/tablet-cases/$1/ [L,R=301]
+# RewriteRule ^shop-reviews/$ /china-webshop-reviews/ [L,R=301]
+RewriteRule ^china-webshop-reviews/([^\.]+)/$ /china-online-shops/$1-review/ [L,R=301]
+RewriteRule ^china-webshop-reviews/$ /china-online-shops/ [L,R=301]
+
+
+
+
+# NEW BECAUSE OF UPDATE FILTERS 
+RewriteRule ^p/([0-9]+)/([^\.]+)/([^\.]+)/$ /p/$1/$2/ [L,R=302]
+RewriteRule ^ps/([0-9]+)/([^\.]+)/([^\.]+)/$ /ps/$1/$2/ [L,R=302]
+# RewriteRule ^2/([0-9]+)/([^\.]+)/$ /p/$1/$2/ [L,R=302]
+# RewriteRule ^3/([0-9]+)/([^\.]+)/$ /ps/$1/$2/ [L,R=302]
+
+# ADDED BECAUSE NEW FILTERS Cat
+RewriteRule ^1/([0-9]+)/([^\.]+)/$ /$2-1-$1/ [L,R=302]
+
+# ADDED BECAUSE NEW FILTERS  Subcat
+RewriteRule ^p/([0-9]+)/([^\.]+)/$ /$2-2-$1/ [L,R=302]
+RewriteRule ^2/([0-9]+)/([^\.]+)/$ /$2-2-$1/ [L,R=302]
+
+# ADDED BECAUSE NEW FILTERS  Subsubcat
+RewriteRule ^ps/([0-9]+)/([^\.]+)/$ /$2-3-$1/ [L,R=302]
+RewriteRule ^3/([0-9]+)/([^\.]+)/$ /$2-3-$1/ [L,R=302]
+
+#ADDED BECAUSE OF SEARCH LINKS IN BLOGS
+RewriteRule ^search/([0-9]+)/([^\.]+)/([0-9]+)/$ /search/$2/ [L,R=301]
+
+
+
+
+
+# NEW Rule for Brands
+RewriteRule ^china-brands/([^\.]+)/$ index.php?source=china-brands&brand=$1
+
+RewriteRule ^china-online-shops/([^\.]+)-review/$ index.php?source=china-online-shops&ref=$1
+RewriteRule ^shop/([A-Za-z]+)/$ index.php?source=home&shopbanner=$1
+RewriteRule ^sku/([0-9]+)/$ index.php?source=sku&pid=$1
+RewriteRule ^sku/([0-9]+)-([^\./]+)/$ index.php?source=sku&pid=$1&string=$2
+RewriteRule ^bestbuy/([^\./]+)/$ index.php?source=bestbuy&type=$1
+RewriteRule ^bestbuy/([^\.]+)/([^\.]+)/$ index.php?source=bestbuy&type=$1&ref=$2
+
+#DELETED
+# RewriteRule ^p/([0-9]+)/([^\.]+)/([0-9]+)/$ index.php?page=sc&subcat=$1&ref=$2&currentpage=$3 [QSA]
+# RewriteRule ^ps/([0-9]+)/([^\.]+)/([0-9]+)/$ index.php?page=sc&subsubcat=$1&ref=$2&currentpage=$3 [QSA]
+
+# New Category
+# OLD RewriteRule ^1/([0-9]+)/([^\.]+)/$ index.php?source=c&cat=$1&ref=$2
+# RewriteRule ^([a-zA-Z\-]+)-1-([0-9]+)/$ index.php?source=c&cat=$2&ref=$1
+RewriteRule ^([^\.\/]+)-1-([0-9]+)\/$ index.php?source=c&cat=$2&ref=$1
+
+# New Subcat
+# OLD RewriteRule ^p/([0-9]+)/([^\.]+)/$ index.php?source=sc&subcat=$1&ref=$2 [QSA]
+# RewriteRule ^[a-zA-Z\-]+\/([a-zA-Z\-]+)-2-([0-9]+)\/$ index.php?source=sc&subcat=$2&ref=$1 [QSA]
+RewriteRule ^[^\/]*[\/]?([^\.\/]+)-2-([0-9]+)\/$ index.php?source=sc&subcat=$2&ref=$1 [QSA] 
+
+# New SubSubcat
+# OLD RewriteRule ^ps/([0-9]+)/([^\.]+)/$ index.php?source=sc&subsubcat=$1&ref=$2 [QSA]
+# RewriteRule ^[a-zA-Z\-]+\/([a-zA-Z\-]+)-3-([0-9]+)\/$ index.php?source=sc&subsubcat=$2&ref=$1 [QSA]
+RewriteRule ^([^\/]*)[\/]?([^\.\/]+)-3-([0-9]+)\/$ index.php?source=sc&subsubcat=$3&ref=$2&catref=$1 [QSA] 
+
+
+#DELETED
+# RewriteRule ^search/([0-9]+)/(.*)/([0-9]+)/$ index.php?source=search&cat=$1&keywords=$2&currentpage=$3 [QSA]
+# NEW SEARCH
+RewriteRule ^search/(.*)/$ index.php?source=search&keywords=$1 [QSA]
+RewriteRule ^goto/([0-9]+)/$ redir.php?id=$1
+# New ShopLogo through Goto
+RewriteRule ^goto/shop/([0-9]+)/$ redir.php?source_id=$1
+RewriteRule ^([^\.]+)/$ index.php?source=$1 [QSA]
+
+
+
+
+
+
+
+# Is voor BING OP DE LIVE
+#   <IfModule mod_rewrite.c>
+#  RewriteCond %{REQUEST_URI} /+[^\.]+$
+#  RewriteRule ^(.+[^/])$ %{REQUEST_URI}/ [R=301,L]
+#   </IfModule>
+
+# RewriteRule ^style_sheet.css style_load.php?v=main
+# RewriteRule ^style_IE8.css style_load.php?v=IE8
+# RewriteRule ^style_IE7.css style_load.php?v=IE7
+
+# Options All -Indexes
+# <files .htaccess>
+# order allow,deny
+# deny from all
+# </files>
+
+# AddType image/svg+xml svg svgz
+# AddEncoding gzip .svgz
+
+# AddHandler application/x-httpd-php54 .html .htm .shtml .php
+
+
+####################
+# GZIP COMPRESSION #
+####################
+SetOutputFilter DEFLATE
+AddOutputFilterByType DEFLATE text/html text/css text/plain text/xml application/x-javascript application/x-httpd-php
+BrowserMatch ^Mozilla/4 gzip-only-text/html
+BrowserMatch ^Mozilla/4\.0[678] no-gzip
+BrowserMatch \bMSIE !no-gzip !gzip-only-text/html
+BrowserMatch \bMSI[E] !no-gzip !gzip-only-text/html
+SetEnvIfNoCase Request_URI \.(?:gif|jpe?g|png)$ no-gzip
+
+
+<FilesMatch "^(assets)\.json$">
+FileETag None
+Header unset ETag
+Header set Cache-Control "max-age=0, no-cache, no-store, must-revalidate"
+Header set Pragma "no-cache"
+Header set Expires "Wed, 11 Jan 1984 05:00:00 GMT"
+</filesMatch>
+

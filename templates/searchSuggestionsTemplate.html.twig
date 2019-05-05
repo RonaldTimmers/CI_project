@@ -1,0 +1,11 @@
+{# empty Twig template #}
+<div id="search-overview" class="jumbotron">
+    <span id="search-suggestions" style="font-size: 0.7em; font-weight: 400;">Did you mean? 
+        
+        {% for suggestion in keywordSuggestions %}
+            <a href="{{ BASE_URL }}search/{{ suggestion['keyword']|url_encode  }}/">{{ suggestion['keyword'] }}</a>
+            {% if not loop.last %},{% endif %}
+        {% endfor %}
+    </span>
+</div>
+
